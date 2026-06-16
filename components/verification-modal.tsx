@@ -1,4 +1,3 @@
-import { router } from "expo-router";
 import { useEffect, useRef } from "react";
 import {
   KeyboardAvoidingView,
@@ -15,6 +14,9 @@ type VerificationModalProps = {
   onClose: () => void;
   code: string;
   onChangeCode: (code: string) => void;
+  errorMessage?: string;
+  isSubmitting?: boolean;
+  onVerify: () => void;
 };
 
 const CODE_LENGTH = 6;
@@ -24,6 +26,9 @@ export function VerificationModal({
   onClose,
   code,
   onChangeCode,
+  errorMessage,
+  isSubmitting = false,
+  onVerify,
 }: VerificationModalProps) {
   const inputRef = useRef<TextInput>(null);
 
@@ -40,10 +45,10 @@ export function VerificationModal({
   }, [visible, onChangeCode]);
 
   useEffect(() => {
-    if (code.length === CODE_LENGTH) {
-      router.replace("/");
+    if (visible && code.length === CODE_LENGTH && !isSubmitting) {
+      onVerify();
     }
-  }, [code]);
+  }, [code, isSubmitting, onVerify, visible]);
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
@@ -69,6 +74,11 @@ export function VerificationModal({
               We sent a verification code to your email. Enter the 6-digit code to
               continue.
             </Text>
+            {errorMessage ? (
+              <Text className="text__body-sm mt-4 text-center text-error">
+                {errorMessage}
+              </Text>
+            ) : null}
 
             <Pressable
               onPress={() => inputRef.current?.focus()}
