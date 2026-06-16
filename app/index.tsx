@@ -1,6 +1,7 @@
 import { images } from "@/constants/images";
 import { Image } from "expo-image";
-import { ScrollView, Text, View } from "react-native";
+import { Link } from "expo-router";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type ColorSwatchProps = {
@@ -41,6 +42,15 @@ export default function Index() {
         className="flex-1 bg-background"
         contentContainerClassName="gap-8 p-6 pb-12"
       >
+        <Link href="/onboarding" asChild>
+          <TouchableOpacity
+            activeOpacity={0.85}
+            className="self-start rounded-xl bg-lingua-purple px-4 py-3"
+          >
+            <Text className="text__h4 text-white">Open Onboarding</Text>
+          </TouchableOpacity>
+        </Link>
+
         {/* Brand */}
         <View className="gap-4">
           <Text className="text__h2">Brand</Text>
