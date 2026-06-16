@@ -1,6 +1,7 @@
 import { images } from "@/constants/images";
+import { useAuth } from "@/hooks/use-auth";
 import { Image } from "expo-image";
-import { Link } from "expo-router";
+import { Link, Redirect } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -36,20 +37,41 @@ function TypographyRow({ label, usage, className }: TypographyRowProps) {
 }
 
 export default function Index() {
+  const { isLoaded, isSignedIn } = useAuth();
+
+  if (!isLoaded) {
+    return null;
+  }
+
+  if (!isSignedIn) {
+    return <Redirect href="/onboarding" />;
+  }
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <ScrollView
         className="flex-1 bg-background"
         contentContainerClassName="gap-8 p-6 pb-12"
       >
-        <Link href="/onboarding" asChild>
-          <TouchableOpacity
-            activeOpacity={0.85}
-            className="self-start rounded-xl bg-lingua-purple px-4 py-3"
-          >
-            <Text className="text__h4 text-white">Open Onboarding</Text>
-          </TouchableOpacity>
-        </Link>
+        <View className="flex-row flex-wrap gap-3">
+          <Link href="/onboarding" asChild>
+            <TouchableOpacity
+              activeOpacity={0.85}
+              className="rounded-xl bg-lingua-purple px-4 py-3"
+            >
+              <Text className="text__h4 text-white">Open Onboarding</Text>
+            </TouchableOpacity>
+          </Link>
+
+          <Link href="/select-language" asChild>
+            <TouchableOpacity
+              activeOpacity={0.85}
+              className="rounded-xl border border-border bg-surface px-4 py-3"
+            >
+              <Text className="text__h4">Choose Language</Text>
+            </TouchableOpacity>
+          </Link>
+        </View>
 
         {/* Brand */}
         <View className="gap-4">
