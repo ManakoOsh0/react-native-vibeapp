@@ -117,7 +117,7 @@ export default function SelectLanguageScreen() {
     }
 
     setSelectedLanguage(selectedId);
-    router.replace("/index");
+    router.replace("/");
   };
 
   if (!isLoaded) {
