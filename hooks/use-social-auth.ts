@@ -14,7 +14,7 @@ export function useSocialAuth() {
 
       try {
         signIn("demo@vibeapp.com");
-        router.replace("/");
+        router.replace("/index");
       } finally {
         setIsLoading(false);
       }
