@@ -1,10 +1,11 @@
 import { languages } from "@/data/languages";
 import { images } from "@/constants/images";
+import { useLanguage } from "@/hooks/use-language";
 import type { Language, LanguageCode } from "@/types/learning";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { Stack, router } from "expo-router";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import {
   Dimensions,
   ScrollView,
@@ -84,10 +85,17 @@ function LanguageOption({ language, isSelected, onPress }: LanguageOptionProps) 
 }
 
 export default function SelectLanguageScreen() {
+  const { isLoaded, selectedLanguageId, setSelectedLanguage } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedId, setSelectedId] = useState<LanguageCode | null>(
     languages[0]?.id ?? null,
   );
+
+  useEffect(() => {
+    if (isLoaded && selectedLanguageId) {
+      setSelectedId(selectedLanguageId);
+    }
+  }, [isLoaded, selectedLanguageId]);
 
   const filteredLanguages = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
@@ -108,8 +116,13 @@ export default function SelectLanguageScreen() {
       return;
     }
 
-    router.back();
+    setSelectedLanguage(selectedId);
+    router.replace("/index");
   };
+
+  if (!isLoaded) {
+    return null;
+  }
 
   return (
     <>

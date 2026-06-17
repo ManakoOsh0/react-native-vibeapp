@@ -39,7 +39,7 @@ export default function SignInScreen() {
 
     signIn(email.trim());
     setVerificationVisible(false);
-    router.replace("/");
+    router.replace("/index");
   }, [email, signIn, verificationCode]);
 
   if (!isLoaded) {
@@ -47,7 +47,7 @@ export default function SignInScreen() {
   }
 
   if (isSignedIn) {
-    return <Redirect href="/" />;
+    return <Redirect href="/index" />;
   }
 
   return (

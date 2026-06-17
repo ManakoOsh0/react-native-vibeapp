@@ -1,3 +1,4 @@
+import "react-native-reanimated";
 import "../global.css";
 
 import { useFonts } from "expo-font";
