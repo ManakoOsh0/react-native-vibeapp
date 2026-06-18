@@ -1,8 +1,8 @@
 import { images } from "@/constants/images";
 import { useAuth } from "@/hooks/use-auth";
 import { useLanguage } from "@/hooks/use-language";
-import { getHomeScreenData } from "@/lib/home-data";
 import type { TodayPlanItemType } from "@/lib/home-data";
+import { getHomeScreenData } from "@/lib/home-data";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { router } from "expo-router";

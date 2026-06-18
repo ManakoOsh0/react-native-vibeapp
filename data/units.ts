@@ -48,6 +48,54 @@ export const units: Unit[] = [
     title: "Unit 2 · Café Culture",
     description: "Order drinks and talk about preferences.",
   },
+
+  // Japanese
+  {
+    id: "ja-unit-1",
+    languageId: "ja",
+    order: 1,
+    title: "Unit 1 · Greetings",
+    description: "Say hello and introduce yourself politely.",
+  },
+  {
+    id: "ja-unit-2",
+    languageId: "ja",
+    order: 2,
+    title: "Unit 2 · Daily Life",
+    description: "Talk about routines and simple needs.",
+  },
+
+  // German
+  {
+    id: "de-unit-1",
+    languageId: "de",
+    order: 1,
+    title: "Unit 1 · Greetings",
+    description: "Greet people and ask how they are.",
+  },
+  {
+    id: "de-unit-2",
+    languageId: "de",
+    order: 2,
+    title: "Unit 2 · Everyday Basics",
+    description: "Order food and handle simple requests.",
+  },
+
+  // Korean
+  {
+    id: "ko-unit-1",
+    languageId: "ko",
+    order: 1,
+    title: "Unit 1 · Greetings",
+    description: "Learn friendly Korean hellos and goodbyes.",
+  },
+  {
+    id: "ko-unit-2",
+    languageId: "ko",
+    order: 2,
+    title: "Unit 2 · Daily Life",
+    description: "Express thanks and talk about your day.",
+  },
 ];
 
 export function getUnitsByLanguage(languageId: LanguageCode): Unit[] {

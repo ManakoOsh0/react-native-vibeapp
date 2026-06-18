@@ -8,6 +8,9 @@ export type LessonImageKey =
   | "earth"
   | "mascotWelcome";
 
+/** Visual progress state shown on lesson cards. */
+export type LessonStatus = "completed" | "in_progress" | "not_started";
+
 export type Language = {
   id: LanguageCode;
   /** Display name in English (instruction language). */
